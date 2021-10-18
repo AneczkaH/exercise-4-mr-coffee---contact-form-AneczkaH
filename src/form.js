@@ -9,18 +9,24 @@ function validateForm() {
   const telephone = document.forms.contact_form.telephone.value;
   const mail = document.forms.contact_form.mail.value;
   const message = document.forms.contact_form.message.value;
-  const regName = /[a-zA-Z]{3,13}/;
+  const regName = /^([a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]){3,13}\b/;
+  const regSurname = /^([a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]){3,20}\b/; // można jeszcze dodać myślnik i spacje dla nazwisk 2-członowych
+  const regMail = /^([a-z0-9_.-]+@[a-z0-9_.-]+\.[a-z]{2,4})/;
+  const regTelephone = /^(\+\d{2})? ?\d{3}[- ]?\d{3}[- ]?\d{3}$/;
 
 
 
-  if (name === null || name.length < 3) {
-    alert('Fill correct name');
+  if (/*name === null ||*/ regName.test(name)===false) {
+    alert('Fill correct name-only letters is ok');
     return false;
-  } if (surname === null || surname.length <= 3) {
-    alert('Fill correct surname');
+  } if (/*surname === null ||*/ regSurname.test(surname)===false) {
+    alert('Fill correct surname-only letters is ok'); 
     return false;
-  } if (mail === null || mail.length < 5 /*|| (mail.length > 5 && (/*!mail.includes("@"))) || startsWith('@') || endsWith('@')*/) {
-    alert('Fill correct email');
+  /*} if (telephone !== null && regTelephone.test(telephone)===false) { // poprawić tak że jak jest puste pole to zwraca true
+    alert('Fill correct phone number- +xx xxx xxx xxx or +xx xxx-xxx-xxx'); 
+    return false;*/
+  } if (mail === null || regMail.test(mail) === false) {
+    alert('Fill correct email - should contain: "@" and "."');
     return false;
   } if (message === null || message.length > 1000 || message.length < 6) {
     alert('The message should be from 6 to 1000 characters');
