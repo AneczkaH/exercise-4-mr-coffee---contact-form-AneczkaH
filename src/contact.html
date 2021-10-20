@@ -1,0 +1,125 @@
+<html lang="pl">
+<head>
+
+	<meta charset="utf-8">
+	<title>Contact</title>
+	<link rel="stylesheet" href="application.css">
+	<meta http-equiv = "X-UA-Compatible" content="IE=edge"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="keywords" content="Mr.Coffee, contact, plan, adresse">
+	<meta name="description" content="Mr.Coffee | Café à Paris | On vous attend!| Nous contacter: contact@mr-coffee.com | Emplacement. Voir sur le plan !">
+	<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow&display=swap" rel="stylesheet">
+</head>
+
+	<body>
+
+		<div id="container">
+
+			<nav>
+				<ul>
+					<li><a href="index.html">Accueil </a></li>
+					<li><a href="about.html">Qui sommes-nous?</a></li>
+					<li><a href="contact.html">Nous contacter</a></li>
+				</ul>
+			</nav>
+
+	
+			<div id= "content_contact">
+	
+				<div id="mr_coffee_logo"> 
+				</div>
+				<h2 class="contact_heading">Dites nous tout !</h2>
+				<form class = "grayBox_contact_form" name = "contact_form" method="POST">
+					
+					<div class= "form_field" >
+						<label for = "name" class = "name_of_field"> Nom * </label>
+						<input type = "text" class= "form_input_field" id="name" maxlength="13" required>
+						<!-- <p class = "invalid_feedback">The name cannot be without value.</p> -->
+					</div>
+					
+					<div class= "form_field" >
+						<label for = "surname" class = "name_of_field">Prénom * </label>
+					 	<input type = "text" class= "form_input_field" id="surname" maxlength="20" required>
+					</div>
+					
+					<div class= "form_field">
+						<label for ="telephone" class = "name_of_field"> Téléphone </label>
+						<input type = "tel" class= "form_input_field" id ="telephone" maxlength="15">
+						 <p class = "invalid_feedback">Fill correct phone number- +xx xxx xxx xxx or +xx xxx-xxx-xxx</p>
+					</div>
+					
+					<div class= "form_field">
+						<label for = "mail" class = "name_of_field"> Adresse mail * </label>
+						<input type = "email" class= "form_input_field" id = "mail" required>
+					</div>
+					
+					<div class= "form_field"> 
+						<label for = "message" class = "name_of_field"> Message * </label>
+						<textarea name = message_field class= "form_input_field" id = "message"
+						 placeholder="Tapez votre message ici" maxlength="1000" required></textarea>
+					</div>
+
+				</form>
+
+				<!-- Trigger/Open The Modal w przypadku wysylania formularza przeniosę go do ciała formularza i dodampreventDefault-->
+				<button type = "submit" class = "button_boxGray" id ="button_envoyer"> ENVOYER </button> 
+				
+				
+				
+				<!-- The Modal -->
+				<div id="envoyer_modal_container" class="modal">
+
+					<!-- Modal content -->
+					<div class="modal_content">
+				  		<div class = "modal_header">
+							<div id="logo_dark"></div>
+							<h3>MERCI <br> Votre message a bien été envoyé !</h3>  
+							
+				  		</div>
+						<div class = "modal_body">
+				  			
+				  			<p> Nous essaierons d’y répondre au mieux dans les plus brefs <br>
+					  			délais. À bientot chez Mr.Coffee
+				  			</p>
+						</div>
+						<div class = modal_footer>
+				  			<button type = "submit" class = "button_boxGray" id ="button_fermer"> FERMER </button>
+						</div>
+			 		</div>	  
+				</div>	
+
+				<h2 class="contact_heading">On vous attend !</h2>
+	
+				<address>
+					<b>Mr.Coffee </b> <br>
+					15 place Jules Guesde <br>
+					75006 Paris <br> <br>
+					Tel : +33 9 46 25 78 45 <br>
+					Mail : contact@mr-coffee.com <br>
+				</address>
+	
+				<div id="img_map">
+				</div>
+			</div>
+
+			<div class="footer"> 
+		
+				<div class = socials>
+	
+					<div id = soc>
+						<p> Suivez nous sur les réseaux sociaux ! </p>
+					</div>		
+	
+					<a href="https://pl.linkedin.com/" class= soc-linkedin target="_blank"> </a>
+					<a href="https://twitter.com/" class= soc-twitter target="_blank"> </a>
+					<a href="https://pl-pl.facebook.com/" class= soc-facebook target="_blank"> </a>
+	
+				</div>
+			</div>
+		</div>
+	</body>
+</html> 
+
+
+<script src ="../node_modules/jquery/dist/jquery.js"></script>
+<script src = "./form.js"></script>
