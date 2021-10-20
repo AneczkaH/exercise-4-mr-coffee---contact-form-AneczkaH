@@ -1,30 +1,27 @@
 // when the page is ready the modal is hidden
 $('.modal').hide();
+$('.invalid_feedback').hide();
 
 // when click the btn id ="button_Envoyer"
 
 function validateForm() {
   const name = document.forms.contact_form.name.value;
   const surname = document.forms.contact_form.surname.value;
-  const telephone = document.forms.contact_form.telephone.value;
   const mail = document.forms.contact_form.mail.value;
   const message = document.forms.contact_form.message.value;
   const regName = /^([a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]){3,13}\b/;
-  const regSurname = /^([a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ]){3,20}\b/; // można jeszcze dodać myślnik i spacje dla nazwisk 2-członowych
+  const regSurname = /^([a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ.'-]){3,20}\b/;
   const regMail = /^([a-z0-9_.-]+@[a-z0-9_.-]+\.[a-z]{2,4})/;
-  const regTelephone = /^(\+\d{2})? ?\d{3}[- ]?\d{3}[- ]?\d{3}$/;
 
-
-
-  if (/*name === null ||*/ regName.test(name)===false) {
+  if (/* name === null || */ regName.test(name) === false) {
     alert('Fill correct name-only letters is ok');
+    /* allert najlepiej byloby zamienić na feedback z podpowiedzią
+    ewentualnie wpisywać jako error do tablicy i walidacje uzależnić
+    od tego czy jest coś w tablicy */
     return false;
-  } if (/*surname === null ||*/ regSurname.test(surname)===false) {
-    alert('Fill correct surname-only letters is ok'); 
+  } if (/* surname === null || */ regSurname.test(surname) === false) {
+    alert('Fill correct surname-only letters is ok');
     return false;
-  /*} if (telephone !== null && regTelephone.test(telephone)===false) { // poprawić tak że jak jest puste pole to zwraca true
-    alert('Fill correct phone number- +xx xxx xxx xxx or +xx xxx-xxx-xxx'); 
-    return false;*/
   } if (mail === null || regMail.test(mail) === false) {
     alert('Fill correct email - should contain: "@" and "."');
     return false;
@@ -35,13 +32,35 @@ function validateForm() {
   return true;
 }
 
-// if field fill corect show the modal class="modal_content"
+function invalidFeedback() {
+  const telephone = document.forms.contact_form.telephone.value;
+  const regTelephone = /^(\+\d{2})? ?\d{3}[- ]?\d{3}[- ]?\d{3}$/;
+  if (telephone !== null && regTelephone.test(telephone) === false) {
+    $('.invalid_feedback').show();
+    $('#telephone.form_input_field').css('margin-bottom', '5px');
+  } else {
+    $('.invalid_feedback').hide();
+    $('#telephone.form_input_field').css('margin-bottom', '20px');
+  }
+}
+
+$('input#telephone').on('blur', invalidFeedback);
+
+// if field fill corect show the modal class="modal_content" and console log entered data in console
+// po przeniesieniu button do wnętrza <form> zmienić on na submit i dodać event.preventDefault();
 $('#button_envoyer').on('click', () => {
   if (validateForm() === true) {
-    console.log(`Dane zapisane: \n Nom: ${document.forms.contact_form.name.value} \n Prénom: ${document.forms.contact_form.surname.value} \n Téléphone: ${document.forms.contact_form.telephone.value} \n Adresse mail: ${document.forms.contact_form.mail.value} \n Message: ${document.forms.contact_form.message.value}`);
+    const userInfo = {};
+    const inputFieldArray = $(':input.form_input_field').get();
+    console.log(inputFieldArray);
 
-    $('.modal').show();
-    // console log entered data in console
+    inputFieldArray.forEach((element) => {
+      userInfo[element.id] = element.value;
+    });
+
+    const userInfoJson = JSON.stringify(userInfo);
+    console.log(userInfoJson);
+    $('.modal').fadeIn(400);
   }
 });
 
@@ -49,5 +68,5 @@ $('#button_envoyer').on('click', () => {
 
 // when click the btn (id ="button_fermer") hidde modal (class="modal_content")
 $('#button_fermer').on('click', () => {
-  $('.modal').hide();
+  $('.modal').fadeOut(300);
 });

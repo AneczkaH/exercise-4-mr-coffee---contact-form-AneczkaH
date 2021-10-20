@@ -31,37 +31,38 @@
 				<h2 class="contact_heading">Dites nous tout !</h2>
 				<form class = "grayBox_contact_form" name = "contact_form" method="POST">
 					
-					<div class= "form_field" id = "form_field_name" >
+					<div class= "form_field" >
 						<label for = "name" class = "name_of_field"> Nom * </label>
-						<input type = "text" class= "form_input_field" id="name" required>
+						<input type = "text" class= "form_input_field" id="name" maxlength="13" required>
 						<!-- <p class = "invalid_feedback">The name cannot be without value.</p> -->
 					</div>
 					
-					<div class= "form_field" id = "form_field_surname">
+					<div class= "form_field" >
 						<label for = "surname" class = "name_of_field">Prénom * </label>
-					 	<input type = "text" class= "form_input_field" id="surname" required>
+					 	<input type = "text" class= "form_input_field" id="surname" maxlength="20" required>
 					</div>
 					
-					<div class= "form_field" id = "form_field_telephone">
+					<div class= "form_field">
 						<label for ="telephone" class = "name_of_field"> Téléphone </label>
-						<input type = "tel" class= "form_input_field" id ="telephone">
+						<input type = "tel" class= "form_input_field" id ="telephone" maxlength="15">
+						 <p class = "invalid_feedback">Fill correct phone number- +xx xxx xxx xxx or +xx xxx-xxx-xxx</p>
 					</div>
 					
-					<div class= "form_field" id = "form_field_address_mail">
+					<div class= "form_field">
 						<label for = "mail" class = "name_of_field"> Adresse mail * </label>
 						<input type = "email" class= "form_input_field" id = "mail" required>
 					</div>
 					
-					<div class= "form_field" id = "form_field_massage"> 
+					<div class= "form_field"> 
 						<label for = "message" class = "name_of_field"> Message * </label>
 						<textarea name = message_field class= "form_input_field" id = "message"
-						 placeholder="Tapez votre message ici" required></textarea>
+						 placeholder="Tapez votre message ici" maxlength="1000" required></textarea>
 					</div>
 
 				</form>
 
-				<!-- Trigger/Open The Modal -->
-				<button type = "submit" class = "button_boxGray" id ="button_envoyer"> ENVOYER </button>
+				<!-- Trigger/Open The Modal w przypadku wysylania formularza przeniosę go do ciała formularza i dodampreventDefault-->
+				<button type = "submit" class = "button_boxGray" id ="button_envoyer"> ENVOYER </button> 
 				
 				
 				
